@@ -1,0 +1,53 @@
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import time
+
+# Configurando para baixar e usar automaticamente a última versão do WebDriver
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+
+# Opções para manter a janela aberta e visível
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_experimental_option("detach", True)
+
+# Acessa o site
+driver.get('https://jsl.rrjuridico.com.br/index.php?acessar=#')
+
+# Aguarda alguns segundos para o site carregar (ajuste conforme necessário)
+time.sleep(3)
+
+# Localiza o campo de login pelo XPath e clica no elemento
+login_field = driver.find_element(By.XPATH, '//*[@id="usuario"]')
+login_field.click()
+
+# Insere o texto "vitor.fonseca" no campo de login
+login_field.send_keys('vitor.fonseca')
+
+# Localiza o campo de senha pelo XPath e clica no elemento
+password_field = driver.find_element(By.XPATH, '//*[@id="senha"]')
+password_field.click()
+
+# Insere a senha no campo de senha
+password_field.send_keys('Delphim@4727')
+
+# Clica no botão de logar
+login_button = driver.find_element(By.XPATH, '//*[@id="div_retorno_autenticacao_dois_fatores"]/div[4]/button')
+login_button.click()
+time.sleep(25)
+
+# Localiza o campo pelo XPath e clica Contencioso
+contencioso_box = driver.find_element(By.XPATH, '//*[@id="pagina"]/div[1]/div/div[2]/a')
+contencioso_box.click()
+time.sleep(2)
+
+# Localiza o campo pelo XPath e clica Relatorio
+relatorio_box = driver.find_element(By.XPATH, '//*[@id="div_atalho_relatorio"]/a[1]/img' )
+relatorio_box.click()
+time.sleep(2)
+
+# Localiza o campo pelo XPath e clica Filtro
+filtro_resumido_box = driver.find_element(By.XPATH, '//*[@id="filtro_resumido"]' )
+filtro_resumido_box.click()
+time.sleep(2)
